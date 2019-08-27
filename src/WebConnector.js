@@ -24,6 +24,20 @@ class WebConnector {
             res.json(device.getState());
         });
 
+        this.express.get('/:blindId/battery', (req, res) => {
+            let device = this.requireDevice(req, res);
+            if (!device) {return;}
+
+            res.json(device.getState().battery);
+        });
+
+        this.express.get('/:blindId/position', (req, res) => {
+            let device = this.requireDevice(req, res);
+            if (!device) {return;}
+
+            res.json(device.getState().position);
+        });
+
         this.express.post('/:blindId/calibrateModeStart', (req, res) => {
             let device = this.requireDevice(req, res);
             if (!device) {
