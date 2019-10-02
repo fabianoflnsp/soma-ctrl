@@ -38,6 +38,23 @@ class WebConnector {
             res.json(device.getState().position);
         });
 
+        this.express.get('/:blindId/statecode', (req, res) => {
+            let device = this.requireDevice(req, res);
+            if (!device) {return;}
+            
+            if (device.getState().state === "closed") {
+                res.json("2");
+            } else if (device.getState().state === "open") {
+                res.json("2");
+            } else if (device.getState().state === "opening") {
+                res.json("1");
+            } else if (device.getState().state === "closing") {
+                res.json("0");
+            } else {
+                res.json("2");
+            }
+        });
+
         this.express.post('/:blindId/calibrateModeStart', (req, res) => {
             let device = this.requireDevice(req, res);
             if (!device) {
