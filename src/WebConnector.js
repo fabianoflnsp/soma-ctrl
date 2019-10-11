@@ -163,7 +163,7 @@ class WebConnector {
                 return;
             }
 
-            position = 100 - position;
+            //position = 100 - position;
             device.log('requesting move to %d', position);
             device.move(position);
             res.json(device.getState());
